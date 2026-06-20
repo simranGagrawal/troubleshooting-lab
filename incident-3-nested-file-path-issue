@@ -1,0 +1,38 @@
+# Incident 03 - Systemd Service Fails Due to Wrong Path
+
+## Symptoms
+
+- Service repeatedly restarting
+- localhost:8080 unreachable
+- curl failed
+
+## Investigation
+
+Checked:
+
+- systemctl status troubleshoot
+- service file
+- project structure
+
+Found:
+
+- Nested troubleshooting-lab directory
+- ExecStart pointing to incorrect path
+
+## Root Cause
+
+Service referenced a path that no longer existed after moving project files.
+
+## Resolution
+
+- Flattened repository structure
+- Updated WorkingDirectory
+- Updated ExecStart
+- Reloaded systemd
+- Restarted service
+
+## Verification
+
+- Service status active (running)
+- curl localhost:8080 successful
+
